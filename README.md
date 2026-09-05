@@ -9,12 +9,10 @@ explanation for each prediction.
 1. `src/data_load.py` — downloads DIFrauD (phishing + sms configs) raw JSONL
 2. `src/preprocess.py` — merges domains, fixes text encoding, dedupes
 3. `src/embeddings.py` — embeds messages with OpenAI text-embedding-3-small
-4. `src/resplit.py` — clusters near-duplicates and reassigns train/test/
-   validation splits to prevent leakage while preserving class balance
+4. `src/resplit.py` — clusters near-duplicates and reassigns train/test/validation splits to prevent leakage while preserving class balance
 5. `src/classifier.py` — trains logistic regression, saves model + metrics
 6. `src/leakage_check.py` — verifies no near-duplicate leakage across splits
-7. `src/overfit_check.py` — train/test gap, cross-validation, regularization
-   sweep diagnostics
+7. `src/overfit_check.py` — train/test gap, cross-validation, regularization sweep diagnostics
 8. `src/explain.py` — generates a Claude explanation for every test prediction
 
 ## Results
@@ -40,19 +38,25 @@ across train/test/validation.
 
 ## Setup
 
-\`\`\`bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env  # fill in OPENAI_API_KEY and ANTHROPIC_API_KEY
-python src/data_load.py
-python src/preprocess.py
-python src/embeddings.py
-python src/resplit.py
-python src/classifier.py
-python src/leakage_check.py
-python src/explain.py
-\`\`\`
+Create and activate a virtual environment, then install dependencies:
+
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+
+Copy the environment template and fill in your API keys:
+
+    cp .env.example .env
+
+Run the pipeline in order:
+
+    python src/data_load.py
+    python src/preprocess.py
+    python src/embeddings.py
+    python src/resplit.py
+    python src/classifier.py
+    python src/leakage_check.py
+    python src/explain.py
 
 ## Dataset
 
