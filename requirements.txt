@@ -1,0 +1,12 @@
+huggingface_hub
+openai
+anthropic
+scikit-learn
+pandas
+numpy
+matplotlib
+python-dotenv
+ftfy
+tiktoken
+pyarrow
+joblib
